@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { formatCurrency } from '@/helpers/format-currency'
 
-import CardSheet from '../../components/card-sheet'
+import CardSheet from '../../components/cart-sheet'
 import { CartContext } from '../../contexts/cart'
 
 interface ProductDetailsProps {

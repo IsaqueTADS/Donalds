@@ -4,7 +4,7 @@
 import { Product } from "@prisma/client";
 import { createContext, ReactNode, useState } from "react";
 
-interface CardProduct extends Pick<Product, "id" | "name" | "price" | "imageUrl"> {
+export interface CartProduct extends Pick<Product, "id" | "name" | "price" | "imageUrl"> {
   quantity: number;
 }
 
@@ -12,9 +12,9 @@ interface CardProduct extends Pick<Product, "id" | "name" | "price" | "imageUrl"
 
 export interface ICardContext {
   isOpen: boolean;
-  products: CardProduct[];
+  products: CartProduct[];
   toggleCart: () => void;
-  addProduct: (product: CardProduct) => void;
+  addProduct: (product: CartProduct) => void;
 }
 
 
@@ -26,12 +26,12 @@ export const CartContext = createContext<ICardContext>({
 })
 
 export const CartProvider = ({children}: {children: ReactNode}) => {
-  const [products, setProducts] = useState<CardProduct[]>([])
+  const [products, setProducts] = useState<CartProduct[]>([])
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const toggleCart = () => {setIsOpen(prev => !prev)}
 
-  const addProduct = (product: CardProduct) => {
+  const addProduct = (product: CartProduct) => {
     const productIsAlreadyOnTheCart = products.some(prevProduct => prevProduct.id === product.id)
 
     if(!productIsAlreadyOnTheCart){
